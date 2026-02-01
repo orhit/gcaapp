@@ -1,0 +1,126 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css");
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loader */
+.login-loader {
+  height: 100vh;
+  background: #000;
+  color: #f4c430;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-loader i {
+  font-size: 4rem;
+  animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Background chess icons */
+.bg-piece {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.04);
+  font-size: 10rem;
+  animation: float 10s infinite linear;
+}
+
+.bg-piece.one { top: 10%; left: 8%; }
+.bg-piece.two { bottom: 15%; right: 10%; animation-delay: 3s; }
+.bg-piece.three { top: 50%; left: 40%; animation-delay: 6s; }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Card */
+.login-card {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 40px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
+.logo i {
+  font-size: 3rem;
+  color: #f4c430;
+  margin-bottom: 10px;
+}
+
+.login-card h2 {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #f4c430;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background: #f4c430;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-card button:hover {
+  background: #ffd75e;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.note {
+  margin-top: 18px;
+  font-size: 0.75rem;
+  color: #777;
+}
