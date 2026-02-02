@@ -5,6 +5,9 @@ import CoachDashboard from "./pages/coach/CoachDashboard";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import ParentDashboard from "./pages/parent/ParentDashboard";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import { Navigate } from "react-router-dom";
+
+
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,11 @@ const router = createBrowserRouter([
     path: "*",
     element: <Login />,
   },
+
+  {
+  path: "*",
+  element: <Navigate to="/login" replace />,
+}
 ]);
 
 export default router;
