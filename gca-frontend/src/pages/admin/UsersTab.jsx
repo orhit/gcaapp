@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE } from "../../config";
 
 export default function UsersTab() {
   const [users, setUsers] = useState([]);
@@ -15,19 +16,28 @@ export default function UsersTab() {
   const [loading, setLoading] = useState(false);
 
   const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
+  const password = sessionStorage.getItem("password"); // ✅ FIX
 
   // 🔄 Load users from DB
   const loadUsers = async () => {
-    const res = await fetch(
-      `http://127.0.0.1:8000/admin/users?email=${email}&password=${password}`
-    );
-    const data = await res.json();
-    setUsers(data);
+    try {
+      const res = await fetch(
+        `${API_BASE}/admin/users?email=${email}&password=${password}`
+      );
+
+      if (!res.ok) throw new Error("Failed to load users");
+
+      const data = await res.json();
+      setUsers(data);
+    } catch (err) {
+      console.error(err);
+      setError("Unable to fetch users");
+    }
   };
 
   useEffect(() => {
     loadUsers();
+    // eslint-disable-next-line
   }, []);
 
   // ➕ Add new user
@@ -43,7 +53,7 @@ export default function UsersTab() {
       setLoading(true);
 
       const res = await fetch(
-        `http://127.0.0.1:8000/admin/create-user?email=${email}&password=${password}`,
+        `${API_BASE}/admin/create-user?email=${email}&password=${password}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -1,22 +1,15 @@
-import Login from "./pages/Login";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import CoachDashboard from "./pages/coach/CoachDashboard";
-import StudentDashboard from "./pages/student/StudentDashboard";
-import ParentDashboard from "./pages/parent/ParentDashboard";
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 
 export default function App() {
-  const role = localStorage.getItem("role");
+  // Debug: Check role AFTER app loads
+  React.useEffect(() => {
+    const role = localStorage.getItem('role');
+    const userId = localStorage.getItem('user_id');
+    console.log('[App] Role:', role);
+    console.log('[App] User ID:', userId);
+  }, []);
 
-  if (!role) {
-    return <Login />;
-  }
-
-  if (role === "admin") return <AdminDashboard />;
-  if (role === "coach") return <CoachDashboard />;
-  if (role === "student") return <StudentDashboard />;
-  if (role === "parent") return <ParentDashboard />;
-
-  // fallback
-  localStorage.clear();
-  return <Login />;
+  return <RouterProvider router={router} />;
 }
