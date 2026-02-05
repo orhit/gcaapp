@@ -1,66 +1,101 @@
+/* =========================
+   BASE (MOBILE FIRST)
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
 .admin-wrapper {
   min-height: 100vh;
   background: #0c0c0c;
   color: #fff;
+  display: flex;
+  flex-direction: column;
 }
+
+/* ---------- HEADER ---------- */
 
 .admin-header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 24px;
+  align-items: center;
+  padding: 12px 14px;
   border-bottom: 1px solid #222;
 }
 
-.role-badge {
-  background: #f4c430;
-  color: #000;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: bold;
+.admin-header h2 {
+  font-size: 16px;
+  margin: 0;
 }
+
+/* Right side (role + logout) */
+.admin-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Role badge */
+.role-badge {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #e53935;
+  color: #fff;
+}
+
+/* Logout button */
+.logout-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+}
+
+.logout-btn:hover {
+  background: #000;
+}
+
+/* ---------- BODY ---------- */
 
 .admin-body {
-  display: flex;
-}
-
-.admin-sidebar {
-  width: 200px;
-  border-right: 1px solid #222;
-  padding: 20px;
-}
-
-.admin-sidebar button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  background: none;
-  color: #aaa;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-}
-
-.admin-sidebar button.active {
-  color: #f4c430;
-}
-
-.admin-content {
   flex: 1;
-  padding: 24px;
+  display: block;
 }
+
+/* Sidebar hidden on mobile */
+.admin-sidebar {
+  display: none;
+}
+
+/* Main content */
+.admin-content {
+  padding: 14px;
+  padding-bottom: 80px; /* space for bottom nav */
+}
+
+/* ---------- FORMS ---------- */
 
 .form-row {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-input, select {
+input,
+select {
   padding: 10px;
   background: #111;
   border: 1px solid #333;
   color: #fff;
+  border-radius: 6px;
+  width: 100%;
 }
 
 button {
@@ -69,14 +104,132 @@ button {
   border: none;
   font-weight: bold;
   cursor: pointer;
+  border-radius: 6px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- TABLES ---------- */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* mobile scroll */
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   border-bottom: 1px solid #222;
+  text-align: left;
+  font-size: 13px;
+}
+
+/* ---------- MOBILE BOTTOM NAV ---------- */
+
+.admin-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  background: #111;
+  border-top: 1px solid #222;
+  z-index: 100;
+}
+
+.admin-bottom-nav button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-bottom-nav button.active {
+  color: #f4c430;
+  font-weight: 600;
+}
+
+/* =========================
+   TABLET & DESKTOP
+========================= */
+
+@media (min-width: 1024px) {
+
+  .admin-wrapper {
+    flex-direction: column;
+  }
+
+  .admin-header {
+    padding: 16px 24px;
+  }
+
+  .admin-header h2 {
+    font-size: 20px;
+  }
+
+  .admin-body {
+    display: flex;
+  }
+
+  /* Sidebar visible */
+  .admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #222;
+  }
+
+  .admin-sidebar button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    background: none;
+    color: #aaa;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .admin-sidebar button.active {
+    color: #f4c430;
+  }
+
+  .admin-content {
+    padding: 24px;
+    padding-bottom: 24px;
+  }
+
+  /* Bottom nav hidden on desktop */
+  .admin-bottom-nav {
+    display: none;
+  }
+
+  /* Desktop forms */
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-row input,
+  .form-row select {
+    width: auto;
+  }
+
+  table {
+    min-width: unset;
+  }
 }
